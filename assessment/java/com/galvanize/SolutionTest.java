@@ -1,19 +1,18 @@
 package com.galvanize;
 
-import static java.lang.String.format;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.galvanize.util.ClassProxy;
 import com.galvanize.util.InstanceProxy;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import static java.lang.String.format;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SolutionTest {
 
     @Test
-    public void aTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    @DisplayName("Code should be open for extension")
+    public void aTest() {
         ClassProxy _Driver = ClassProxy.interfaceNamed("com.galvanize.Driver")
                 .ensureMethod(m -> m
                         .isPublic()
