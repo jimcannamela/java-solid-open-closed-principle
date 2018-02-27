@@ -2,7 +2,7 @@ package com.galvanize;
 
 import static java.lang.String.format;
 
-class MySQLDriver {
+public class MySQLDriver {
 
     public String quoteMySQLColumn(String column) {
         if (column.contains(".")) {
