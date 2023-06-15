@@ -17,7 +17,10 @@ public class SQLBuilderTest {
                 "FROM `foo`, `bar`\n" +
                 "WHERE `blah` = \"other\"";
 
-        assertEquals(expected, builder.build());
+        System.out.println("My SQL Driver Test");
+        System.out.println("Expected: " + expected);
+        System.out.println("Actual: " + builder.build());
+        assertEquals(expected, builder.build(), "Works with My SQL");
     }
 
     @Test
@@ -31,6 +34,9 @@ public class SQLBuilderTest {
                 "FROM \"sales\", \"salespeople\"\n" +
                 "WHERE \"blah\" = 'other'";
 
-        assertEquals(expected, builder.build());
+        System.out.println("PostgreSQL Driver Test");
+        System.out.println("Expected: " + expected);
+        System.out.println("Actual: " + builder.build());
+        assertEquals(expected, builder.build(), "Works with PostgreSQL");
     }
 }

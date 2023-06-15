@@ -9,12 +9,16 @@ import static java.util.stream.Collectors.joining;
 
 public class SQLBuilder {
 
-    private final Object driver;
+    private Driver driver;
     private ArrayList<String> columns = new ArrayList<>();
     private ArrayList<String> tables = new ArrayList<>();
     private LinkedHashMap<String, String> whereClauses = new LinkedHashMap<>();
 
-    public SQLBuilder(Object driver) {
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public SQLBuilder(Driver driver) {
         this.driver = driver;
     }
 
@@ -56,27 +60,15 @@ public class SQLBuilder {
     }
 
     private String quoteColumnName(String column) {
-        if (driver instanceof MySQLDriver) {
-            return ((MySQLDriver) driver).quoteMySQLColumn(column);
-        } else {
-            return ((PostgreSQLDriver) driver).quotePostgresColumn(column);
-        }
+        return driver.quoteColumn(column);
     }
 
     private String quoteTableName(String table) {
-        if (driver instanceof MySQLDriver) {
-            return ((MySQLDriver) driver).quoteMySQLTable(table);
-        } else {
-            return ((PostgreSQLDriver) driver).quotePostgresColumn(table);
-        }
+        return driver.quoteTable(table);
     }
 
     private String quoteValue(String value) {
-        if (driver instanceof MySQLDriver) {
-            return ((MySQLDriver) driver).quoteMySQLValue(value);
-        } else {
-            return ((PostgreSQLDriver) driver).quotePostgresValue(value);
-        }
+        return driver.quoteValue(value);
     }
 
     private String whereClause(String column, String value) {
